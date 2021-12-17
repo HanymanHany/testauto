@@ -1,6 +1,6 @@
 ----------Подготовка окружения и запуск тестов----------
 1. На машине должна быть установлена java 1.8
-2. На машину необходимо установить maven и allure (лежит в корне проекта)
+2. На машину необходимо установить maven и allure 
 3. Открываем папку с тестами и вызываем cmd.
 4. Выполняем команду mvn clean test -Dtest=testAuthUser (стандартно browser Chrome, headless = true - без поднятия браузера)
   4.1 Запуск с параметрами mvn clean test -Dbrowser=firefox -Dheadless=true -Dtest=testAuthUser
