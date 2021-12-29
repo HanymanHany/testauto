@@ -9,22 +9,23 @@ public class RegistrationOrderLocators {
     public final static SelenideElement
             CheckoutCartBtn=  $(".cart__checkout-link"),
             AddressBlock =  $(".address-edit__bottom"),
-            AddressField =  $(byXpath("//*[contains(@class,'address-selection__search-input')]//*[@type='text']")),
-            ContinueBtn =  $(".address-edit__button"),
+            AddressField =  $(byAttribute("data-test", "checkout-delivery-address")),
+            ContinueBtn =  $(byAttribute("data-test", "checkout-delivery-next")),
             AddressItem = $(byXpath("//*[@class='address-selection__list']/li[1]")),
-            SuccessOrder = $(byXpath("//*[@class='layout__main']//h1")),
+            SuccessOrder = $(".thank-you__title"),
 
             /** Доставка курьером блок **/
-            ApartmentField = $(byId("input-id-73")),
-            EntranceField = $(byId("input-id-75")),
-            FloorField = $(byId("input-id-76")),
-            CommentsField = $(byId("input-id-78")),
-            NameField = $(byId("input-id-79")),
-            PhoneField = $(byId("input-id-80")),
-            SaveContinueBtn = $(".address-courier__submit"),
+            ApartmentField = $(byAttribute("data-test", "checkout-address-flat")),
+            EntranceField = $(byAttribute("data-test", "checkout-address-porch")),
+            FloorField = $(byAttribute("data-test", "checkout-address-floor")),
+            IntercomField = $(byAttribute("data-test", "checkout-address-intercom")),
+            CommentsField = $(byAttribute("data-test", "checkout-address-comment")),
+            NameField = $(byAttribute("data-test", "checkout-recipient-name")),
+            PhoneField = $(byAttribute("data-test", "checkout-recipient-phone")),
+            SaveContinueBtn = $(byAttribute("data-test", "checkout-address-save")),
 
             /** Подтверждение телефона **/
-            PasswordField = $(byId("input-id-97")),
+            PasswordField = $(byAttribute("type", "password")),
             ConfirmBtn = $(byXpath("//*[@class='modal__body']//*[@type='submit']")),
 
             /** Страница с данными по заказу **/
@@ -33,7 +34,12 @@ public class RegistrationOrderLocators {
 
             /** Страница оплаты **/
             PaymentBlock = $(".payment-confirmation-container__body"),
-            PayBtn = $(".payment-scenario__back-link_indent_no");
+            PayBtn = $(".payment-scenario__back-link_indent_no"),
+
+            /** Страница заказов **/
+            LastOrderCard = $(byXpath("//*[@class='order-card'])[1]")),
+            CancelOrderBtn = $(".info-link--cancel"),
+            SendBtn = $(byAttribute("type", "submit"));
 
 
 }

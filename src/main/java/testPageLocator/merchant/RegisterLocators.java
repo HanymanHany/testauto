@@ -4,29 +4,30 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterLocators {
     public final static SelenideElement
             RegistrationPage = $(".page-registration"),
-            SurnameField = $(By.id("v-input-id-23")),
-            SurnameErrorMsg = $(By.id("v-input-id-23-alert")),
-            NameField = $(By.id("v-input-id-24")),
-            NameErrorMsg = $(By.id("v-input-id-24-alert")),
-            MiddleNameField = $(By.id("v-input-id-25")),
-            MiddleNameErrorMsg = $(By.id("v-input-id-25-alert")),
-            PhoneField = $(By.id("v-input-id-26")),
-            PhoneErrorMsg = $(By.id("v-input-id-26-alert")),
-            EmailField = $(By.id("v-input-id-27")),
-            EmailErrorMsg = $(By.id("v-input-id-27-alert")),
-            InnField = $(By.id("v-input-id-28")),
-            InnErrorMsg = $(By.id("v-input-id-28-alert")),
-            OrganizationField = $(By.id("v-input-id-31")),
-            OrganizationErrorMsg = $(By.id("v-input-id-31-alert")),
-            AddressField = $(By.id("v-input-id-32")),
-            AddressErrorMsg = $(By.id("v-input-id-32-alert")),
-            ProductsFileField = $(By.xpath("//input[@type='file']")),
-            ProductsFileErrorMsg = $(By.id("v-input-id-33-alert")),
+            SurnameField = $(byAttribute("data-test", "last_name")),
+            SurnameErrorMsg = $(byAttribute("data-test", "last_name_alert")),
+            NameField = $(byAttribute("data-test", "first_name")),
+            NameErrorMsg = $(byAttribute("data-test", "first_name_alert")),
+            MiddleNameField = $(byAttribute("data-test", "middle_name")),
+            MiddleNameErrorMsg = $(byAttribute("data-test", "middle_name_alert")),
+            PhoneField = $(byAttribute("data-test", "phone")),
+            PhoneErrorMsg = $(byAttribute("data-test", "phone_alert")),
+            EmailField = $(byAttribute("data-test", "email")),
+            EmailErrorMsg = $(byAttribute("data-test", "email_alert")),
+            InnField = $(byAttribute("data-test", "inn")),
+            InnErrorMsg = $(byAttribute("data-test", "inn_alert")),
+            OrganizationField = $(byAttribute("data-test", "legal_name")),
+            OrganizationErrorMsg = $(byAttribute("data-test", "legal_name_alert")),
+            AddressField = $(byAttribute("data-test", "storage_address")),
+            AddressErrorMsg = $(byAttribute("data-test", "storage_address_alert")),
+            ProductsFileField = $(byAttribute("data-test", "file_assortment")),
+            ProductsFileErrorMsg = $(byAttribute("data-test", "file_assortment_alert")),
             ProductsFileProgressBar = $(By.xpath("//*[@role='progressbar']")),
             ProductsFileSuccess = $(".alert-success"),
             RegistrationBtn = $(By.xpath("//*[@type='submit']")),
