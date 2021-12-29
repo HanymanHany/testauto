@@ -14,6 +14,7 @@ import configs.DataConfig;
 import env.Base_Container;
 import org.aeonbits.owner.ConfigFactory;
 import testPageLocator.market.productsPage.ProductsLocators;
+import testPageLocator.market.registrationOrderPage.RegistrationOrderLocators;
 import testPageLocator.merchant.RegisterLocators;
 
 import java.io.File;
@@ -31,6 +32,7 @@ public class MainSteps extends Base_Container {
     MainLocators mainPage;
     LoginLocators loginAdminPage;
     ProductsLocators productsPage;
+    RegistrationOrderLocators orderPage;
 
     Generator generator = new Generator();
     String email = generator.getEmail();
@@ -138,4 +140,38 @@ public class MainSteps extends Base_Container {
         step("Переходим в корзину", () -> { mainPage.CartBtn.click();});
 
     }
+
+    // Оформление и оплата заказа
+    public void addOrder(String product, String address) {
+        // prepare
+        addProductsInCart(product);
+
+        // actions
+        step("Нажимаем на кнопку Перейти к оформлению", () -> { orderPage.CheckoutCartBtn.click(); });
+        step("Отображается страница с выбором адреса" , () -> {orderPage.AddressBlock.shouldBe();});
+        step("Вводим адрес в поле" , () -> {orderPage.AddressField.setValue(address);});
+        step("Выбираем предложенный адрес" , () -> {orderPage.AddressItem.click();});
+        step("Нажимаем на кнопку Продолжить" , () -> {orderPage.ContinueBtn.click();});
+        step("Заполняем поле Квартира" , () -> {orderPage.ApartmentField.setValue("2");});
+        step("Заполняем поле Подъезд" , () -> {orderPage.EntranceField.setValue("2");});
+        step("Заполняем поле Этаж" , () -> {orderPage.FloorField.setValue("2");});
+        step("Заполняем поле Комментарий курьеру" , () -> {orderPage.CommentsField.setValue("comment");});
+        step("Заполняем поле Телефон" , () -> {orderPage.PhoneField.setValue(data.getPhone());});
+        step("Заполняем поле Имя" , () -> {orderPage.NameField.setValue("name");});
+        step("Нажимаем на кнопку Сохранить и Продолжить" , () -> {orderPage.SaveContinueBtn.click();});
+        step("Вводим пароль в поле код из смс и нажимаем продолжить" , () -> {
+            orderPage.PasswordField.setValue(data.getCode());
+            orderPage.ConfirmBtn.click();
+        });
+        step("Отображается информация по заказу и блок с доставкой" , () -> {orderPage.DeliveryBlock.shouldBe();});
+        step("Нажимаем кнопку Далее" , () -> {orderPage.NextOrderBtn.click();});
+        step("Отображается страница оплаты" , () -> {orderPage.PaymentBlock.shouldBe();});
+        step("Нажимаем кнопку Оплаты" , () -> {orderPage.PayBtn.click();});
+
+        // verification
+        step("Проверяем отображение успешности заказа ", () -> {
+            orderPage.SuccessOrder.shouldBe();});
+
+    }
+
 }

@@ -13,6 +13,6 @@ public class MainLocators {
             SearchField =  $(".search__input"),
             CartBtn =  $(".header__button--shopping-cart"),
             UserMenu =  $(".header__user"),
-            ProfileBtn = $(byXpath("(//*[@class='header__user-control'])[1]")),
-            OrdersBtn = $(byXpath("(//*[@class='header__user-control'])[2]"));
+            ProfileBtn = $(byAttribute("data-test", "profile-menu-personal")),
+            OrdersBtn = $(byAttribute("data-test", "profile-menu-orders"));
 }

@@ -1,6 +1,7 @@
 package Tests.Market;
 
 import configs.DataConfig;
+import configs.UrlsConfig;
 import constants.ErrorsMsg;
 import env.Base_Container;
 import io.qameta.allure.Description;
@@ -17,6 +18,7 @@ import testPageLocator.market.productsPage.ProductsLocators;
 import testPageLocator.market.registrationOrderPage.RegistrationOrderLocators;
 
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,37 +30,30 @@ public class testAddOrder extends Base_Container {
 
     MainSteps mainSteps = new MainSteps();
     static final DataConfig data = ConfigFactory.create(DataConfig.class, System.getProperties());
+    static final UrlsConfig urlConfig = ConfigFactory.create(UrlsConfig.class, System.getProperties());
+
     @Test
     @Description("Добавление в корзину и оформление заказа неавторизованным пользователем.")
     void testRegistrationOrder() {
-        // prepare
-        mainSteps.addProductsInCart("ПРОДАЖИ");
-
         // actions
-        step("Нажимаем на кнопку Перейти к оформлению", () -> { orderPage.CheckoutCartBtn.click(); });
-        step("Отображается страница с выбором адреса" , () -> {orderPage.AddressBlock.shouldBe();});
-        step("Вводим адрес в поле" , () -> {orderPage.AddressField.setValue("г Москва, ул Земляной Вал, д 33");});
-        step("Выбираем предложенный адрес" , () -> {orderPage.AddressItem.click();});
-        step("Нажимаем на кнопку Продолжить" , () -> {orderPage.ContinueBtn.click();});
-        step("Заполняем поле Квартира" , () -> {orderPage.ApartmentField.setValue("2");});
-        step("Заполняем поле Подъезд" , () -> {orderPage.EntranceField.setValue("2");});
-        step("Заполняем поле Этаж" , () -> {orderPage.FloorField.setValue("2");});
-        step("Заполняем поле Комментарий курьеру" , () -> {orderPage.CommentsField.setValue("comment");});
-        step("Заполняем поле Телефон" , () -> {orderPage.PhoneField.setValue(data.getPhone());});
-        step("Заполняем поле Имя" , () -> {orderPage.NameField.setValue("name");});
-        step("Нажимаем на кнопку Сохранить и Продолжить" , () -> {orderPage.SaveContinueBtn.click();});
-        step("Вводим пароль в поле код из смс и нажимаем продолжить" , () -> {
-            orderPage.PasswordField.setValue("1234");
-            orderPage.ConfirmBtn.click();
-        });
-        step("Отображается информация по заказу и блок с доставкой" , () -> {orderPage.DeliveryBlock.shouldBe();});
-        step("Нажимаем кнопку Далее" , () -> {orderPage.NextOrderBtn.click();});
-        step("Отображается страница оплаты" , () -> {orderPage.PaymentBlock.shouldBe();});
-        step("Нажимаем кнопку Оплаты" , () -> {orderPage.PayBtn.click();});
+        mainSteps.addOrder("ПРОДАЖИ","г Москва, ул Земляной Вал, д 33");
 
-        // verification
-        step("Проверяем отображение успешности заказа ", () -> {
-            orderPage.SuccessOrder.shouldBe();});
+    }
+
+    //FIXME: тест будет доработан позже, проблемы с отменой заказа
+    @Test
+    @Description("Отмена неоплаченного заказа.")
+    void testCancelOrder() {
+
+//        // prepare
+//        mainSteps.addOrder("ПРОДАЖИ","г Москва, ул Земляной Вал, д 33");
+//
+//        // actions
+//        step("Открытие страницы " +urlConfig.getMarketUrl()+"/profile/orders/",
+//                () -> open(urlConfig.getMarketUrl()+"/profile/orders/"));
+//        step("Нажимаем на карточку заказа", () -> { orderPage.LastOrderCard.click(); });
+//        step("Нажимаем на кнопку отмены заказа", () -> { orderPage.CancelOrderBtn.click(); });
+//        step("Нажимаем на кнопку отправить", () -> { orderPage.SendBtn.click(); });
 
     }
 

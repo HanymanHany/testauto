@@ -26,4 +26,14 @@ public interface WebDriverConfig  extends Config {
     @Key("headless")
     boolean getHeadlessMode();
 
+    @Key("runType")
+    String getRunType();
+
+    @Key("browser.version")
+    String getBrowserVersion();
+
+    @Key("remote.url")
+    String getRemoteUrl();
+
+
 }
