@@ -14,7 +14,30 @@ public interface DataConfig extends Config {
     @Key("phone")
     String getPhone();
 
-    @Key("sms_code")
+    @Key("sms.code")
     String getCode();
 
+    @Key("name.merchant")
+    String getNameMerchant();
+
+    @Key("surname.merchant")
+    String getSurnameMerchant();
+
+    @Key("middle.name.merchant")
+    String getMiddleNameMerchant();
+
+    @Key("phone.merchant")
+    String getPhoneMerchant();
+
+    @Key("email.merchant")
+    String getEmailMerchant();
+
+    @Key("inn.merchant")
+    String getInnMerchant();
+
+    @Key("organization.merchant")
+    String getOrganizationMerchant();
+
+    @Key("address.merchant")
+    String getAddressMerchant();
 }
