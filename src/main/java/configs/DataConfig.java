@@ -14,6 +14,9 @@ public interface DataConfig extends Config {
     @Key("phone")
     String getPhone();
 
+    @Key("phone.user2")
+    String getPhoneUser2();
+
     @Key("sms.code")
     String getCode();
 

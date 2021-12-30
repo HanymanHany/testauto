@@ -39,7 +39,7 @@ public class testProfileUser extends Base_Container {
     @Description("Проверка пустых полей.")
     void testCheckFieldNameOnObligatory() {
         // prepare
-        mainSteps.loginUser();
+        mainSteps.loginUser(data.getPhone());
         mainSteps.clickProfile();
 
         // actions
@@ -65,7 +65,7 @@ public class testProfileUser extends Base_Container {
     @Description("Превышение лимита на ФИО.")
     void testCheckExceedingLimitFieldName() {
         // prepare
-        mainSteps.loginUser();
+        mainSteps.loginUser(data.getPhone());
         mainSteps.clickProfile();
 
         // actions
@@ -82,7 +82,7 @@ public class testProfileUser extends Base_Container {
     @Description("Ввод неполное количество цифры в поле телефонного номера.")
     void testInputIncorrectPhoneNumber() {
         // prepare
-        mainSteps.loginUser();
+        mainSteps.loginUser(data.getPhone());
         mainSteps.clickProfile();
 
         // actions
@@ -101,7 +101,7 @@ public class testProfileUser extends Base_Container {
     @Description("Ввод некорректного формата емейла.")
     void testInputIncorrectEmail() {
         // prepare
-        mainSteps.loginUser();
+        mainSteps.loginUser(data.getPhone());
         mainSteps.clickProfile();
 
         // actions
