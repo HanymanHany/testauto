@@ -2,6 +2,7 @@ package steps;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import configs.DataOrderConfig;
 import configs.UrlsConfig;
 import constants.ErrorsMsg;
 import helpers.Generator;
@@ -38,10 +39,11 @@ public class MainSteps extends Base_Container {
     String email = generator.getEmail();
 
     static final DataConfig data = ConfigFactory.create(DataConfig.class, System.getProperties());
+    static final DataOrderConfig dataOrder = ConfigFactory.create(DataOrderConfig.class, System.getProperties());
     static final UrlsConfig urlConfig = ConfigFactory.create(UrlsConfig.class, System.getProperties());
 
     // Steps login user in system. Login with exist phone 79999999999 and sms 1234
-    public void loginUser() {
+    public void loginUser(String userPhone) {
         step("Нажатие на кнопку Войти", () -> {
             mainPage.LogInBtn.click();
         });
@@ -49,7 +51,7 @@ public class MainSteps extends Base_Container {
             authPage.SignUpBtn.click();
         });
         step("Ввод номера телефона и получение кода", () -> {
-            authPage.LoginField.setValue(data.getPhone());
+            authPage.LoginField.setValue(userPhone);
             authPage.GetCodeSms.click();
         });
         step("Ввод кода из смс", () -> {
@@ -152,10 +154,10 @@ public class MainSteps extends Base_Container {
         step("Вводим адрес в поле" , () -> {orderPage.AddressField.setValue(address);});
         step("Выбираем предложенный адрес" , () -> {orderPage.AddressItem.click();});
         step("Нажимаем на кнопку Продолжить" , () -> {orderPage.ContinueBtn.click();});
-        step("Заполняем поле Квартира" , () -> {orderPage.ApartmentField.setValue("2");});
-        step("Заполняем поле Подъезд" , () -> {orderPage.EntranceField.setValue("2");});
-        step("Заполняем поле Этаж" , () -> {orderPage.FloorField.setValue("2");});
-        step("Заполняем поле Комментарий курьеру" , () -> {orderPage.CommentsField.setValue("comment");});
+        step("Заполняем поле Квартира" , () -> {orderPage.ApartmentField.setValue(dataOrder.getFlat());});
+        step("Заполняем поле Подъезд" , () -> {orderPage.EntranceField.setValue(dataOrder.getPorch());});
+        step("Заполняем поле Этаж" , () -> {orderPage.FloorField.setValue(dataOrder.getFloor());});
+        step("Заполняем поле Комментарий курьеру" , () -> {orderPage.CommentsField.setValue(dataOrder.getComments());});
         step("Заполняем поле Телефон" , () -> {orderPage.PhoneField.setValue(data.getPhone());});
         step("Заполняем поле Имя" , () -> {orderPage.NameField.setValue("name");});
         step("Нажимаем на кнопку Сохранить и Продолжить" , () -> {orderPage.SaveContinueBtn.click();});
@@ -171,6 +173,10 @@ public class MainSteps extends Base_Container {
         // verification
         step("Проверяем отображение успешности заказа ", () -> {
             orderPage.SuccessOrder.shouldBe();});
+
+    }
+
+    public void addDelivery(String product, String address) {
 
     }
 

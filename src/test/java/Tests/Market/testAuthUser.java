@@ -33,7 +33,7 @@ public class testAuthUser extends Base_Container {
     @Test
     @Description("Корректная авторизация пользователя по номеру телефона.")
     void testAuthUserByPhone() {
-        mainSteps.loginUser();
+        mainSteps.loginUser(data.getPhone());
     }
 
     @Test
